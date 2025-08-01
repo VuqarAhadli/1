@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vugar Ahadli</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --text: #111;
+      --accent: #333;
+      --primary: #0078b9;
+      --hover: #0078b9;
+      --light-gray: #ddd;
+      --card: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--card);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.2s; }
+    section:nth-of-type(2) { animation-delay: 0.4s; }
+    section:nth-of-type(3) { animation-delay: 0.6s; }
+
+    .card {
+      max-width: 720px;
+      background: linear-gradient(145deg, #ffffff, #f1f1f1);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background-color: var(--hover);
+      transform: translateY(-2px);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+    }
+
+    ul li {
+      margin: 0.8rem 0;
+    }
+
+    ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    ul li a:hover {
+      color: var(--hover);
+    }
+
+    footer {
+      background: var(--card);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid var(--light-gray);
+      margin-top: 4rem;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav a {
+        margin-left: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .card {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Vugar Ahadli</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>
+        I'm Vugar Ahadli, a computer engineering student at Baku Higher Oil School with interests in AI, mathematics, physics, and social development.
+        I build solutions, lead with purpose, and strive to make the world more efficient through code and practical action.
+      </p>
+      <a class="btn" href="#projects">See My Work</a>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="card">
+      <h2>My Projects</h2>
+      <p>Worth visiting:</p>
+      <ul>
+        <li><a href="https://bhos.club" target="_blank">🌐 bhos.club</a></li>
+        <li><a href="https://debate.bhos.club" target="_blank">🗣️ debate.bhos.club</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for collaboration, speaking, or projects.</p>
+      <a class="btn" href="mailto:vugarahadli@hotmail.com">Email Me</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> Vugar Ahadli. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
