@@ -7,21 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f5f7fa;
-      --card: rgba(255, 255, 255, 0.7);
+      --bg: #f6f8fa;
+      --card: rgba(255, 255, 255, 0.85);
       --text: #111;
       --primary: #0078b9;
-      --accent: #333;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --accent: #222;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
     }
 
     [data-theme="dark"] {
-      --bg: #0b0f14;
-      --card: rgba(30, 30, 30, 0.7);
+      --bg: #0e1217;
+      --card: rgba(20, 20, 20, 0.85);
       --text: #eaeaea;
       --primary: #00b7ff;
       --accent: #f8f8f8;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,39 +30,48 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.7;
       scroll-behavior: smooth;
-      overflow-x: hidden;
-      line-height: 1.6;
-      transition: background 0.5s, color 0.5s;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
+
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
+      width: 100%;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 2rem;
-      background: var(--card);
-      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
       box-shadow: var(--shadow);
+      transition: background 0.3s ease;
+    }
+    [data-theme="dark"] header {
+      background: rgba(20, 20, 20, 0.65);
     }
 
     header h1 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: var(--primary);
       font-weight: 700;
     }
 
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
     nav a {
-      margin-left: 1.5rem;
       text-decoration: none;
       color: var(--accent);
       font-weight: 500;
       position: relative;
+      transition: color 0.3s;
     }
-
     nav a::after {
       content: "";
       position: absolute;
@@ -73,82 +82,97 @@
       background: var(--primary);
       transition: width 0.3s ease;
     }
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
 
-    nav a:hover, nav a.active { color: var(--primary); }
-    nav a:hover::after, nav a.active::after { width: 100%; }
 
     #theme-toggle {
-      background: none;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      border-radius: 8px;
-      padding: 0.4rem 0.8rem;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    #theme-toggle:hover {
+      appearance: none;
+      width: 46px;
+      height: 24px;
       background: var(--primary);
-      color: #fff;
+      border-radius: 50px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #theme-toggle::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    [data-theme="dark"] #theme-toggle::before {
+      transform: translateX(22px);
     }
 
-    section {
-      padding: 6rem 2rem;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.6s ease-out;
-    }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* HERO */
     .hero {
-      min-height: 70vh;
+      min-height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #0078b9 0%, #009ddc 100%);
+      background: linear-gradient(135deg, #0078b9, #009ddc);
       color: #fff;
       text-align: center;
+      padding: 5rem 2rem;
+      box-shadow: var(--shadow);
     }
-
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
     }
-
     .hero p {
       font-size: 1.2rem;
       max-width: 600px;
     }
 
-    .card {
-      max-width: 720px;
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 14px;
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
+
+    section {
+      padding: 5rem 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
+
+    .card {
+      max-width: 750px;
+      margin: 2.5rem auto;
+      padding: 2.5rem;
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      transition: transform 0.3s;
+    }
     .card:hover {
       transform: translateY(-6px);
     }
 
     h2 {
       font-size: 2rem;
-      margin-bottom: 1rem;
       color: var(--accent);
+      margin-bottom: 1rem;
     }
 
     .btn {
-      background-color: var(--primary);
+      background: var(--primary);
       color: #fff;
       padding: 0.8rem 1.6rem;
       border-radius: 8px;
@@ -156,10 +180,11 @@
       font-weight: 600;
       display: inline-block;
       margin-top: 1.5rem;
-      transition: background 0.3s ease, transform 0.2s ease;
+      transition: transform 0.2s, background 0.3s;
     }
-
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover {
+      transform: translateY(-3px);
+    }
 
     .skills span {
       display: inline-block;
@@ -171,7 +196,30 @@
       font-size: 0.9rem;
     }
 
+    ul {
+      list-style: none;
+      padding: 0;
+    }
 
+    ul li a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    ul li a:hover {
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid rgba(150,150,150,0.2);
+      margin-top: 4rem;
+    }
   </style>
 </head>
 <body>
@@ -184,7 +232,7 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="theme-toggle">☀️</button>
+    <input type="checkbox" id="theme-toggle">
   </header>
 
   <section class="hero">
@@ -197,8 +245,8 @@
     <div class="card">
       <h2>About Me</h2>
       <p>
-        I'm a computer engineering student at Baku Higher Oil School with interests in artificial intelligence,
-        robotics, and practical innovation. My mission is to make technology more efficient, ethical, and accessible.
+        I'm a computer engineering student at Baku Higher Oil School with interests in
+        robotics and practical innovation. My mission is to make technology more efficient, ethical, and accessible.
       </p>
     </div>
   </section>
@@ -222,7 +270,7 @@
       <h2>Projects</h2>
       <ul>
         <li><a href="https://test.vugarahadli.xyz/" target="_blank">Unfinished project</a></li>
-        <li><a href="https://debate.bhos.club" target="_blank"> Debate club site</a></li>
+        <li><a href="https://debate.bhos.club" target="_blank">Debate Club Site</a></li>
       </ul>
     </div>
   </section>
@@ -235,7 +283,7 @@
     </div>
   </section>
 
-  
+
 
   <script>
 
@@ -247,20 +295,14 @@
     }, { threshold: 0.2 });
     sections.forEach(sec => observer.observe(sec));
 
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) document.body.setAttribute('data-theme', 'dark');
+      else document.body.removeAttribute('data-theme');
+    });
 
 
-
-    const btn = document.getElementById('theme-toggle');
-    btn.onclick = () => {
-      const current = document.body.getAttribute('data-theme');
-      if (current === 'dark') {
-        document.body.removeAttribute('data-theme');
-        btn.textContent = '☀️';
-      } else {
-        document.body.setAttribute('data-theme', 'dark');
-        btn.textContent = '🌙';
-      }
-    };
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
 </body>
